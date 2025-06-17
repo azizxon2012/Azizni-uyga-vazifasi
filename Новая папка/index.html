@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Counter</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white flex items-center justify-center min-h-screen">
+
+  <div class="text-center space-y-6">
+    <h1 class="text-left text-sm text-gray-400">Counter</h1>
+
+    <!-- Input + Button -->
+    <div class="flex items-center justify-center gap-4">
+      <input id="numberInput" type="number" placeholder="Enter your number"
+        class="rounded-full px-5 py-2 text-black bg-gray-200 outline-none" />
+      <button onclick="sendNumber()" class="bg-gray-800 px-5 py-2 rounded-full">Send</button>
+    </div>
+
+    <!-- Counter -->
+    <div class="flex items-center justify-center gap-8 bg-zinc-800 px-10 py-6 rounded-3xl shadow-lg">
+      <button onclick="decrement()" class="text-2xl">-</button>
+      <span id="counter" class="text-5xl font-semibold text-red-500">0</span>
+      <button onclick="increment()" class="text-2xl">+</button>
+    </div>
+
+    <!-- Color Picker -->
+    <div class="flex items-center justify-center gap-4 text-xl">
+      <label for="colorPicker">Select color</label>
+      <input id="colorPicker" type="color" value="#cc3333" onchange="changeColor()" class="w-10 h-6 border-2 border-white" />
+    </div>
+  </div>
+
+  <script>
+    let counter = 0;
+
+    function updateCounterDisplay() {
+      document.getElementById("counter").textContent = counter;
+    }
+
+    function increment() {
+      counter++;
+      updateCounterDisplay();
+    }
+
+    function decrement() {
+      counter--;
+      updateCounterDisplay();
+    }
+
+    function sendNumber() {
+      const value = parseInt(document.getElementById("numberInput").value);
+      if (!isNaN(value)) {
+        counter = value;
+        updateCounterDisplay();
+      }
+    }
+
+    function changeColor() {
+      const color = document.getElementById("colorPicker").value;
+      document.getElementById("counter").style.color = color;
+    }
+  </script>
+</body>
+</html>
